@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+ oxidized:
+  restart: always
+  container_name: "${PROJECT_NAME}_OXIDIZED"
+  hostname: oxidized
+  build:
+    context: ./
+    dockerfile: Dockerfile
+  ports:
+    - ${HTTP_IP_PORT_OXIDIZED}:8888/tcp
+  environment:
+    CONFIG_RELOAD_INTERVAL: ${CONFIG_RELOAD_INTERVAL}
+  volumes:
+    - "/etc/timezone:/etc/timezone:ro"
+    - "/etc/localtime:/etc/localtime:ro"
+    - "${DATA_FOLDER_PATH}/oxidized-docker:/root/.config/oxidized"

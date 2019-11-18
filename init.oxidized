@@ -1,0 +1,17 @@
+#!/bin/bash
+set -e
+
+[ -f "/root/.config/oxidized/pid" ] && rm -f /root/.config/oxidized/pid
+
+# файлы по умолчанию если не существуют
+        [ -f "/root/.config/oxidized/config" ] || \
+           ( cp /root/.config/oxidized.default/config /root/.config/oxidized/ && echo '  Copy default "config"' )
+        [ -f "/root/.config/oxidized/router.db.csv" ] || \
+           ( cp /root/.config/oxidized.default/router.db.csv   /root/.config/oxidized/ && echo '  Copy default "router.db.sql"' )
+
+
+# закрытый ключ ssh для авторизации на промежуточных узлах
+[ -f "/root/.config/oxidized/.ssh/id_dsa" ] && ( cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/ )
+
+sleep infinity
+

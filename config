@@ -1,0 +1,68 @@
+username: username
+password: Passw0rD
+model: routeros
+interval: 7200 
+use_syslog: false
+#log: /home/oxidized/.config/oxidized/logs/
+debug: false
+threads: 30
+timeout: 180
+retries: 3
+prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
+rest: 0.0.0.0:8888
+next_adds_job: false
+vars:
+  enable: abobrinha
+  auth_methods: [ "none", "publickey", "password", "keyboard-interactive" ]
+  ssh_no_keepalive: true
+groups:
+    Router:
+        username: ssh8
+        password: abobrinha
+models:
+    airos:
+        username: admin
+        password: abobrinha
+#pid: /root/.config/oxidized/pid
+input:
+  default: ssh, telnet
+  debug: true
+#  ssh:
+#    secure: false
+output:
+  default: git
+  git:
+    user: usuario
+    email: o@example.com
+    repo: "~/.config/oxidized/git"
+source:
+  default: csv
+  csv:
+    file: "~/.config/oxidized/router.db.csv"
+    delimiter: !ruby/regexp /:/
+    map:
+      name: 0
+      ip: 1
+      model: 2
+      username: 3
+      password: 4
+    vars_map:
+      enable: 5
+      group: 6
+      ssh_port: 7
+      ssh_proxy: 8
+      ssh_proxy_port: 9
+
+model_map:
+  mikrotik: routeros
+  cisco: ios
+  iosxe: ios
+  juniper: junos
+  hp: procurve, comware
+  datacom: datacom
+  huawei: vrp
+  ubiquiti: airos, edgeswitch
+  nexus: nxos
+  fortigate: fortios
+  f5: tmos
+  arista_eos: eos

@@ -1,0 +1,10 @@
+# model_map[routeros|ios|junos|procurve|comware|datacom|vrp|airos|edgeswitch]
+#  name:ipaddr:model:username:password:enable_password:group_devices:ssh_port:ssh_proxy:ssh_proxy_port:ssh_key:ssh_no_exec
+
+# прямой доступ
+name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port
+
+# через маршрутизатор
+name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port:ssh_user_on_router@ip_addr_router:ssh_port_router
+
+
