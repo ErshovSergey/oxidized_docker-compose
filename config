@@ -1,7 +1,7 @@
 username: username
-password: Passw0rD
+password: passw0rd
 model: routeros
-interval: 7200 
+interval: 43200
 use_syslog: false
 #log: /home/oxidized/.config/oxidized/logs/
 debug: false
@@ -10,25 +10,26 @@ timeout: 180
 retries: 3
 prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
 rest: 0.0.0.0:8888
-next_adds_job: false
+# Oxidized can spawn a new worker thread and perform the download immediately with the following configuration
+next_adds_job: true
 vars:
   enable: abobrinha
-  auth_methods: [ "none", "publickey", "password", "keyboard-interactive" ]
+  auth_methods: [ "publickey", "password" ]
   ssh_no_keepalive: true
 groups:
-    Router:
-        username: ssh8
-        password: abobrinha
+  router:
+    username: vagrant
+    password: Vagrant
+  switch:
+    username: vagrant
+    password: vagrant
 models:
     airos:
         username: admin
         password: abobrinha
-#pid: /root/.config/oxidized/pid
 input:
   default: ssh, telnet
-  debug: true
-#  ssh:
-#    secure: false
+  debug: false
 output:
   default: git
   git:
@@ -46,9 +47,9 @@ source:
       model: 2
       username: 3
       password: 4
+      group: 6
     vars_map:
       enable: 5
-      group: 6
       ssh_port: 7
       ssh_proxy: 8
       ssh_proxy_port: 9
