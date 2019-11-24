@@ -1,22 +1,33 @@
 version: '2'
 
 services:
- oxidized:
-  restart: always
-  container_name: "${PROJECT_NAME}_OXIDIZED"
-  hostname: oxidized
-  build:
-    context: ./
-    dockerfile: Dockerfile
-  ports:
-    - ${HTTP_IP_PORT_OXIDIZED}:8888/tcp
-  environment:
-    CONFIG_RELOAD_INTERVAL: ${CONFIG_RELOAD_INTERVAL}
-#    - "TZ=America/Los_Angeles" # offset = -08:00 / DST -07:00    TZ: Europe/Stockholm
-    TZ: "America/New_York"
+  oxidized:
+    restart: always
+    container_name: "${PROJECT_NAME}_OXIDIZED"
+    hostname: oxidized
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    expose:
+      - 8888
+    environment:
+      - CONFIG_RELOAD_INTERVAL=${CONFIG_RELOAD_INTERVAL}
+      - VIRTUAL_HOST=${VIRTUAL_HOST}
+    volumes:
+      - "${DATA_FOLDER_PATH}/oxidized-docker:/root/.config/oxidized"
+    restart: always
 
-  volumes:
-#    - "/etc/timezone:/etc/timezone:ro"
-#    - "/etc/localtime:/etc/localtime:ro"
-    - "${DATA_FOLDER_PATH}/oxidized-docker:/root/.config/oxidized"
 
+  nginx-proxy:
+    image: jwilder/nginx-proxy:alpine
+    hostname: reverseproxy
+    container_name: "${PROJECT_NAME}_reverse_proxy"
+    ports:
+      -  "${HTTP_IP}:${HTTP_PORT}:80"
+#     -  "${HTTP_IP}:${HTTPS_PORT}:443"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+      - ${DATA_FOLDER_PATH}/vhost.d:/etc/nginx/vhost.d
+      - ${DATA_FOLDER_PATH}/htpasswd:/etc/nginx/htpasswd 
+#     - ${DATA_FOLDER_PATH}/certs:/etc/nginx/certs:ro
+    restart: always

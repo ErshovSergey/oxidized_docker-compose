@@ -1,3 +1,9 @@
+####  Настройка  
+Скопировать файл
+```
+cp .env-default .env
+```
+и настроить параметры.   
 
 #### Команды
 Создать контейнер
@@ -25,7 +31,7 @@ user add name=[ssh_user] group=read
 ```
 Назначаем ключ пользователю  
 ```
-/user ssh-keys import user=[ssh_user] public-key-file=[name_of_key.pub]
+/user ssh-keys import user=[ssh_user] public-key-file=[d_dsa.pub]
 ```
 Разрешаем forwarding  
 ```
@@ -44,8 +50,12 @@ ssh -o StrictHostKeyChecking=no -p [порт ssh на маршрутизатор
 ```
 - авторизацию на внутренем узле, должна пройти с приглшением ввода пароля на внутренний узел  
 ```
-ssh -o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p [ssh_user inside]@[ip адрес хоста внутри сети] -p [порт ssh на хосте внутри сети" [ssh_user]@[ip маршрутизатора] -p [порт ssh на маршрутизаторе]
+ssh -o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p [ssh_user inside]@[ip адрес хоста внутри сети] -p [порт ssh на хосте внутри сети]" [ssh_user]@[ip маршрутизатора] -p [порт ssh на маршрутизаторе]
 ```
+
+### Авторизация Basic access authentication  
+Необходимо поместить файл в формате .htpasswd в папку ${DATA_FOLDER_PATH}/htpasswd/ с названием ${VIRTUAL_HOST}  
+
 ### Ссылки
 nginx+ldap
 https://github.com/ytti/oxidized/issues/784#issuecomment-289759880
