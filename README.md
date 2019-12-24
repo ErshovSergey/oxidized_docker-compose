@@ -1,11 +1,12 @@
-####  Настройка  
+###  Настройка  
 Скопировать файл
 ```
 cp .env-default .env
+cp  	router.db.csv-default  	router.db.csv
 ```
-и настроить параметры.   
+и настроить параметры и доступы к сетевым устройствам.   
 
-#### Команды
+### Команды
 Создать контейнер
 ```
 docker-compose up --build -d --remove-orphans --force-recreate
@@ -15,15 +16,15 @@ docker-compose up --build -d --remove-orphans --force-recreate
 docker-compose down --remove-orphans
 ```
 
-#### Получение конфигурации за маршрутизатором Mikrotik
-##### Подготовка маршрутизатора Mikrotik
-На хосте oxidized cоздаем ключ (docker exec -i -t [name_of_container] bash) и копируем закрытый ключ внутрь контенера
+### Получение конфигурации за маршрутизатором Mikrotik
+#### Подготовка маршрутизатора Mikrotik
+Внутри контейнера oxidized cоздаем ключ (docker exec -i -t [name_of_container] bash) и копируем закрытый ключ внутрь контенера
 ```
 ssh-keygen -t dsa -N '' -C oxidized-key -f /root/.config/oxidized/.ssh/id_dsa
 cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/
 ```
 
-##### На маршрутизаторе Mikrotik  
+#### На маршрутизаторе Mikrotik  
 Открытый ключ [${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa.pub] копируем на маршрутизатор.  
 Создаем пользователя на маршрутизаторе (только для чтения, сложный пароль)  
 ```
@@ -37,7 +38,7 @@ user add name=[ssh_user] group=read
 ```
 /ip ssh set forwarding-enabled=local
 ```
-##### На хосте за маршрутизатором Mikrotik  
+#### На хосте за маршрутизатором Mikrotik  
 Создаем пользователя [ssh_user inside] на хосте внутри сети (только для чтения [сложный пароль])   
 Строка (в файле *router.db.csv*) для получения конфига   
 ```
