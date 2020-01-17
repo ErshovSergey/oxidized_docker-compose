@@ -15,7 +15,7 @@ docker-compose up --build -d --remove-orphans --force-recreate
 ```
 docker-compose down --remove-orphans
 ```
-#### Обновит образы  
+#### Обновить образы  
 ```
 docker pull jwilder/nginx-proxy:alpine
 docker pull oxidized/oxidized
