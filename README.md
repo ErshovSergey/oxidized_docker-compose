@@ -11,10 +11,16 @@ cp  	router.db.csv-default  	router.db.csv
 ```
 docker-compose up --build -d --remove-orphans --force-recreate
 ```
-Удалить контейнер
+#### Удалить контейнер
 ```
 docker-compose down --remove-orphans
 ```
+#### Обновит образы  
+```
+docker pull jwilder/nginx-proxy:alpine
+docker pull oxidized/oxidized
+```
+После обновления пересоздать контейнеры
 
 ### Получение конфигурации за маршрутизатором Mikrotik
 #### Подготовка маршрутизатора Mikrotik
