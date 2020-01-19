@@ -35,7 +35,13 @@ docker pull oxidized/oxidized
 ssh-keygen -t dsa -N '' -C oxidized-key -f /root/.config/oxidized/.ssh/id_dsa
 cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/
 ```
-
+Необходимо сохранять файлы для авторизации на устройствах по сертификату  
+```
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa.pub
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/oxidized-key.key
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/oxidized-key.key.pub
+```
 #### На маршрутизаторе Mikrotik  
 Открытый ключ [${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa.pub] копируем на маршрутизатор.  
 Создаем пользователя на маршрутизаторе (только для чтения, сложный пароль)  
