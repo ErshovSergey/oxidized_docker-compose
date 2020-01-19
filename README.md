@@ -4,18 +4,17 @@ git clone https://github.com/ErshovSergey/oxidized_docker-compose.git
 cd oxidized_docker-compose
 ```
 ###  Настройка  
-Скопировать файл
+Скопировать файлы
 ```
 cp .env-default .env
 cp router.db.csv-default  	router.db.csv
 ```
 и настроить параметры (*.env*) контейнера и доступы (*router.db.csv*) к сетевым устройствам, basic аутентификация настраивается в файле htpasswd, по умолчанию *логин/пароль admin/admin*.   
 В дальнейшем добавлять устройства для бекапа необходимо в *${DATA_FOLDER_PATH}/oxidized-docker/router.db.csv*, basic аутентификация в файле настраивается в файле *${DATA_FOLDER_PATH}/htpasswd/${VIRTUAL_HOST}*.
-
 ### Адрес для доступа к консоли  
 *http://${VIRTUAL_HOST}*  
 ### Команды
-Создать контейнер  
+#### Создать контейнер  
 ```
 docker-compose up --build -d --remove-orphans --force-recreate
 ```
@@ -64,7 +63,7 @@ user add name=[ssh_user] group=read
 ```
 [unic_name]:[ip адрес хоста внутри сети]:routeros:[ssh_user inside]:[пароль для ssh_user inside]:empty:group_1:[порт ssh на хосте внутри сети]:[ssh_user]@[ip маршрутизатора]:[порт ssh на маршрутизаторе]
 ```
-Проверка (из контейнера)  
+Проверка (из контейнера oxidized)  
 - авторизацию по ключу, должна пройти без ключа на маршрутизатор  
 ```
 ssh -o StrictHostKeyChecking=no -p [порт ssh на маршрутизаторе] [ssh_user]@[ip маршрутизатора]
