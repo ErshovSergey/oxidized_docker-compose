@@ -3,12 +3,11 @@
 git clone https://github.com/ErshovSergey/oxidized_docker-compose.git
 cd oxidized_docker-compose
 ```
-Скопировать файл
 ###  Настройка  
 Скопировать файл
 ```
 cp .env-default .env
-cp  	router.db.csv-default  	router.db.csv
+cp router.db.csv-default  	router.db.csv
 ```
 и настроить параметры и доступы к сетевым устройствам.   
 
