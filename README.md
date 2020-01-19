@@ -9,8 +9,8 @@ cd oxidized_docker-compose
 cp .env-default .env
 cp router.db.csv-default  	router.db.csv
 ```
-и настроить параметры (*.env*) контейнера и доступы (*router.db.csv*) к сетевым устройствам.   
-В дальнейшем добавлять устройства для бекапа необходимо в *${DATA_FOLDER_PATH}/oxidized-docker/router.db.csv*  
+и настроить параметры (*.env*) контейнера и доступы (*router.db.csv*) к сетевым устройствам, basic аутентификация настраивается в файле htpasswd, по умолчанию *логин/пароль admin/admin*.   
+В дальнейшем добавлять устройства для бекапа необходимо в *${DATA_FOLDER_PATH}/oxidized-docker/router.db.csv*, basic аутентификация в файле настраивается в файле *${DATA_FOLDER_PATH}/htpasswd/${VIRTUAL_HOST}*.
 
 ### Команды
 Создать контейнер
