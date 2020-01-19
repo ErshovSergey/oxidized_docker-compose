@@ -1,3 +1,9 @@
+###  Установка  
+```
+git clone https://github.com/ErshovSergey/oxidized_docker-compose.git
+cd oxidized_docker-compose
+```
+Скопировать файл
 ###  Настройка  
 Скопировать файл
 ```
