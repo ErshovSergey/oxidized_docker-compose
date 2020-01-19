@@ -1,10 +1,20 @@
+# Возможные модели
 # model_map[routeros|ios|junos|procurve|comware|datacom|vrp|airos|edgeswitch]
+# строка для конфига
 #  name:ipaddr:model:username:password:enable_password:group_devices:ssh_port:ssh_proxy:ssh_proxy_port:ssh_key:ssh_no_exec
+# ssh_no_exec[true|false]
 
 # прямой доступ
-name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port
+# name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port
+# пример
+name-router:11.22.33.44:routeros:ssh_read:PASS-ssh_read:empty:router:22
+
 
 # через маршрутизатор
-name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port:ssh_user_on_router@ip_addr_router:ssh_port_router
+# name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port:ssh_user_on_router@ip_addr_router:ssh_port_router
+name-router-inside:192.168.121.3:routeros:ssh_read:PASS-ssh_read:empty:switch:22:PASS-ssh_read@11.22.33.44:22
+
+
+
 
 

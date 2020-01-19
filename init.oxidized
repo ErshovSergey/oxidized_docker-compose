@@ -7,7 +7,7 @@ set -e
         [ -f "/root/.config/oxidized/config" ] || \
            ( cp /root/.config/oxidized.default/config /root/.config/oxidized/ && echo '  Copy default "config"' )
         [ -f "/root/.config/oxidized/router.db.csv" ] || \
-           ( cp /root/.config/oxidized.default/router.db.csv   /root/.config/oxidized/ && echo '  Copy default "router.db.sql"' )
+           ( cp /root/.config/oxidized.default/router.db.csv   /root/.config/oxidized/ && echo '  Copy default "router.db.csv"' )
 #        [ -f "/etc/nginx/htpasswd/${VIRTUAL_HOST}" ] || \
 #           ( cp /root/.config/oxidized.default/htpasswd   /etc/nginx/htpasswd/${VIRTUAL_HOST} && echo '  Copy default "htpasswd"' )
 
