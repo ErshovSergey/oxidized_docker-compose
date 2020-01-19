@@ -12,12 +12,14 @@ cp router.db.csv-default  	router.db.csv
 и настроить параметры (*.env*) контейнера и доступы (*router.db.csv*) к сетевым устройствам, basic аутентификация настраивается в файле htpasswd, по умолчанию *логин/пароль admin/admin*.   
 В дальнейшем добавлять устройства для бекапа необходимо в *${DATA_FOLDER_PATH}/oxidized-docker/router.db.csv*, basic аутентификация в файле настраивается в файле *${DATA_FOLDER_PATH}/htpasswd/${VIRTUAL_HOST}*.
 
+### Адрес для доступа к консоли  
+*http://${VIRTUAL_HOST}*  
 ### Команды
-Создать контейнер
+Создать контейнер  
 ```
 docker-compose up --build -d --remove-orphans --force-recreate
 ```
-#### Удалить контейнер
+#### Удалить контейнер  
 ```
 docker-compose down --remove-orphans
 ```
@@ -26,10 +28,10 @@ docker-compose down --remove-orphans
 docker pull jwilder/nginx-proxy:alpine
 docker pull oxidized/oxidized
 ```
-После обновления пересоздать контейнеры
+После обновления пересоздать контейнеры  
 
-### Получение конфигурации за маршрутизатором Mikrotik
-#### Подготовка маршрутизатора Mikrotik
+### Получение конфигурации за маршрутизатором Mikrotik  
+#### Подготовка маршрутизатора Mikrotik  
 Внутри контейнера oxidized cоздаем ключ (docker exec -i -t [name_of_container] bash) и копируем закрытый ключ внутрь контенера
 ```
 ssh-keygen -t dsa -N '' -C oxidized-key -f /root/.config/oxidized/.ssh/id_dsa
