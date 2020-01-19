@@ -66,9 +66,6 @@ ssh -o StrictHostKeyChecking=no -p [порт ssh на маршрутизатор
 ssh -o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p [ssh_user inside]@[ip адрес хоста внутри сети] -p [порт ssh на хосте внутри сети]" [ssh_user]@[ip маршрутизатора] -p [порт ssh на маршрутизаторе]
 ```
 
-### Авторизация Basic access authentication  
-Необходимо поместить файл в формате .htpasswd в папку ${DATA_FOLDER_PATH}/htpasswd/ с названием ${VIRTUAL_HOST}  
-
 ### Ссылки
 nginx+ldap
 https://github.com/ytti/oxidized/issues/784#issuecomment-289759880
