@@ -4,20 +4,21 @@ git clone https://github.com/ErshovSergey/oxidized_docker-compose.git
 cd oxidized_docker-compose
 ```
 ###  Настройка  
-Скопировать файл
+Скопировать файлы
 ```
 cp .env-default .env
 cp router.db.csv-default  	router.db.csv
 ```
 и настроить параметры (*.env*) контейнера и доступы (*router.db.csv*) к сетевым устройствам, basic аутентификация настраивается в файле htpasswd, по умолчанию *логин/пароль admin/admin*.   
 В дальнейшем добавлять устройства для бекапа необходимо в *${DATA_FOLDER_PATH}/oxidized-docker/router.db.csv*, basic аутентификация в файле настраивается в файле *${DATA_FOLDER_PATH}/htpasswd/${VIRTUAL_HOST}*.
-
+### Адрес для доступа к консоли  
+*http://${VIRTUAL_HOST}*  
 ### Команды
-Создать контейнер
+#### Создать контейнер  
 ```
 docker-compose up --build -d --remove-orphans --force-recreate
 ```
-#### Удалить контейнер
+#### Удалить контейнер  
 ```
 docker-compose down --remove-orphans
 ```
@@ -26,16 +27,22 @@ docker-compose down --remove-orphans
 docker pull jwilder/nginx-proxy:alpine
 docker pull oxidized/oxidized
 ```
-После обновления пересоздать контейнеры
+После обновления пересоздать контейнеры  
 
-### Получение конфигурации за маршрутизатором Mikrotik
-#### Подготовка маршрутизатора Mikrotik
+### Получение конфигурации за маршрутизатором Mikrotik  
+#### Подготовка маршрутизатора Mikrotik  
 Внутри контейнера oxidized cоздаем ключ (docker exec -i -t [name_of_container] bash) и копируем закрытый ключ внутрь контенера
 ```
 ssh-keygen -t dsa -N '' -C oxidized-key -f /root/.config/oxidized/.ssh/id_dsa
 cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/
 ```
-
+Необходимо сохранять файлы для авторизации на устройствах по сертификату  
+```
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa.pub
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/oxidized-key.key
+${DATA_FOLDER_PATH}/oxidized-docker/.ssh/oxidized-key.key.pub
+```
 #### На маршрутизаторе Mikrotik  
 Открытый ключ [${DATA_FOLDER_PATH}/oxidized-docker/.ssh/id_dsa.pub] копируем на маршрутизатор.  
 Создаем пользователя на маршрутизаторе (только для чтения, сложный пароль)  
@@ -56,18 +63,15 @@ user add name=[ssh_user] group=read
 ```
 [unic_name]:[ip адрес хоста внутри сети]:routeros:[ssh_user inside]:[пароль для ssh_user inside]:empty:group_1:[порт ssh на хосте внутри сети]:[ssh_user]@[ip маршрутизатора]:[порт ssh на маршрутизаторе]
 ```
-Проверка (из контейнера)  
-- авторизацию по ключу, должна пройти без ключа на маршрутизатор  
+Проверка (из контейнера oxidized)  
+- авторизация по ключу, должна пройти без ключа на маршрутизатор  
 ```
 ssh -o StrictHostKeyChecking=no -p [порт ssh на маршрутизаторе] [ssh_user]@[ip маршрутизатора]
 ```
-- авторизацию на внутренем узле, должна пройти с приглшением ввода пароля на внутренний узел  
+- авторизацию на внутренем узле должна пройти по сертификату с последующим приглашением ввода пароля на внутренний узел  
 ```
 ssh -o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p [ssh_user inside]@[ip адрес хоста внутри сети] -p [порт ssh на хосте внутри сети]" [ssh_user]@[ip маршрутизатора] -p [порт ssh на маршрутизаторе]
 ```
-
-### Авторизация Basic access authentication  
-Необходимо поместить файл в формате .htpasswd в папку ${DATA_FOLDER_PATH}/htpasswd/ с названием ${VIRTUAL_HOST}  
 
 ### Ссылки
 nginx+ldap
