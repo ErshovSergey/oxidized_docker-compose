@@ -14,7 +14,17 @@ name-router:11.22.33.44:routeros:ssh_read:PASS-ssh_read:empty:router:22
 # name_host:ip_addr_host:routeros:ssh_user:ssh_user_pass:enable_pass:group_1:ssh_port:ssh_user_on_router@ip_addr_router:ssh_port_router
 name-router-inside:192.168.121.3:routeros:ssh_read:PASS-ssh_read:empty:switch:22:PASS-ssh_read@11.22.33.44:22
 
+# DGS-1510-28X
+dgs_22:1.1.2.2:dlinklevel2:Login:Password:enable_Password:DGS-1510-28X:22
 
+### DGS-3420-28TC
+dgs_150:1.1.3.3:dlink:Login2:Password2:enable_Password2:DGS-3420-28TC:22
+
+### DGS-1210-28/ME - работает - ###
+dgs_128:1.1.4.4:dlink1210ME:Login3:Password3:enable_Password3:DGS-1210-28/ME:22
+
+### DGS-1510-28X/ME
+dgs_222:1.1.5.5:DlinkDGS_1510_28X_ME:Login4:Password4:enable_Password4:DGS-1510-28X/ME:22
 
 
 
