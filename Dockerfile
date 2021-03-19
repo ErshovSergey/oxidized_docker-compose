@@ -1,8 +1,10 @@
 FROM oxidized/oxidized:latest
 
-RUN mkdir /etc/service/init.oxidized /root/.config/oxidized.default \
-  && echo 'ServerAliveInterval 15'> /etc/ssh/ssh_config \
-  && echo 'ServerAliveCountMax 0'>> /etc/ssh/ssh_config
+RUN mkdir /etc/service/init.oxidized /root/.config/oxidized.default /root/.config/oxidized.default/devices
 
 COPY init.oxidized /etc/service/init.oxidized/run
 COPY config router.db.csv htpasswd /root/.config/oxidized.default/
+COPY ssh_config.dlink /etc/ssh/ssh_config
+
+COPY new-devices/* /root/.config/oxidized.default/devices/
+
