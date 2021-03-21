@@ -12,12 +12,11 @@ class Dlink1210ME < Oxidized::Model
    end
 
    cmd 'show config current_config' do |cfg|
-     cfg.gsub! /show config current_config\s.+/, '---' # show config current_config
-     cfg.gsub! /^Building configuration\s.+/, '++' # show config current_config
-     cfg.gsub! /^(Device|System) Uptime\s.+/, '===' # Omit constantly changing uptime info
+     cfg.gsub! /show config current_config\s.+/, '# show config current_config' # show config current_config
+     cfg.gsub! /^# User Account\ncreate account( \w* \w*)\n(\w*)\n(\w*)/, "# User Account\ncreate account\\1\ \n<< SENSORED >>\n<< SENSORED >>" # 
+#     cfg.gsub! /^(Device|System) Uptime\s.+/, '===' # Omit constantly changing uptime info
      comment cfg
    end
-
 
   cfg :ssh do
     post_login 'disable clipaging'
