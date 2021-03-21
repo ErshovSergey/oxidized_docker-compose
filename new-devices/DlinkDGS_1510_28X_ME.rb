@@ -2,7 +2,7 @@ class DlinkDGS_1510_28X_ME < Oxidized::Model
   # D-LINK Switches dlinkDGS-1510-28X/ME
 
   prompt /^(\r*[\w\s.@()\/:-]+[#>]\s?)$/
-  comment '# '
+  comment '#'
 
   cmd :secret do |cfg|
     cfg.gsub! /^(create snmp community) \S+/, '\\1 <removed>'
@@ -25,12 +25,7 @@ class DlinkDGS_1510_28X_ME < Oxidized::Model
 
   cmd 'show config effective'
 
-  cfg :telnet do
-    username /\r*([\w\s.@()\/:-]+)?([Uu]ser[Nn]ame|[Ll]ogin):/
-    password /\r*[Pp]ass[Ww]ord:/
-  end
-
-  cfg :telnet, :ssh do
+  cfg :ssh do
     post_login 'disable clipaging'
     pre_logout 'logout'
   end

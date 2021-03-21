@@ -6,5 +6,5 @@ COPY init.oxidized /etc/service/init.oxidized/run
 COPY config router.db.csv htpasswd /root/.config/oxidized.default/
 COPY ssh_config.dlink /etc/ssh/ssh_config
 
-COPY new-devices/* /root/.config/oxidized.default/devices/
+COPY new-devices/*.rb /root/.config/oxidized.default/devices/
 

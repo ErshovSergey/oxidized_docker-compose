@@ -1,7 +1,7 @@
 class Dlink1210ME < Oxidized::Model
   # D-LINK Switches level 2
   # Test on DGS-1210-28/ME
-  # /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/dlink1210ME.rb
+  # /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/Dlink1210ME.rb
 
   prompt /^(\e\[27m)?(\r*[\w\s.@()\/:-]+[#>]\s?)$/
   comment ''
@@ -12,9 +12,12 @@ class Dlink1210ME < Oxidized::Model
    end
 
    cmd 'show config current_config' do |cfg|
-     cfg.gsub! /^(Device|System) Uptime\s.+/, '' # Omit constantly changing uptime info
+     cfg.gsub! /show config current_config\s.+/, '---' # show config current_config
+     cfg.gsub! /^Building configuration\s.+/, '++' # show config current_config
+     cfg.gsub! /^(Device|System) Uptime\s.+/, '===' # Omit constantly changing uptime info
      comment cfg
    end
+
 
   cfg :ssh do
     post_login 'disable clipaging'
