@@ -73,6 +73,12 @@ ssh -o StrictHostKeyChecking=no -p [порт ssh на маршрутизатор
 ssh -o StrictHostKeyChecking=no -o ProxyCommand="ssh -W %h:%p [ssh_user inside]@[ip адрес хоста внутри сети] -p [порт ssh на хосте внутри сети]" [ssh_user]@[ip маршрутизатора] -p [порт ssh на маршрутизаторе]
 ```
 
+#### Коммутаторы Dlink - особенности
+Коммутаторы от Dlink - имеют ряд особенностей.
+Разные линейки коммутаторов имеют разный CLI, т.е. команды CLI для разных линеек - разные.
+Для каждой линейки необходимо использовать свою настройку - подробности в папке new-devises.
+Также для работы черезе ssh для разных линеек необходимо использовать свой набор криптоалгоритмов - подробнее в файле ssh_config.dlink-default.
+
 ### Ссылки
 nginx+ldap
 https://github.com/ytti/oxidized/issues/784#issuecomment-289759880
