@@ -8,19 +8,15 @@ set -e
            ( cp /root/.config/oxidized.default/config /root/.config/oxidized/ && echo '  Copy default "config"' )
         [ -f "/root/.config/oxidized/router.db.csv" ] || \
            ( cp /root/.config/oxidized.default/router.db.csv   /root/.config/oxidized/ && echo '  Copy default "router.db.csv"' )
-        [ -f "/etc/nginx/htpasswd/${VIRTUAL_HOST}" ] || \
+        [ -f "/tmp/htpasswd/${VIRTUAL_HOST}" ] || \
            ( cp /root/.config/oxidized.default/htpasswd   /tmp/htpasswd/${VIRTUAL_HOST} && echo '  Copy default "htpasswd"' )
-#           ( cp /root/.config/oxidized.default/htpasswd   /etc/nginx/htpasswd/${VIRTUAL_HOST} && echo '  Copy default "htpasswd"' )
-
 
 # закрытый ключ ssh для авторизации на промежуточных узлах
 [ -f "/root/.config/oxidized/.ssh/id_dsa" ] && ( cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/ )
 
 
 # дополнительные файлы для устройств
-# [ -z "$(ls -A /root/.config/oxidized.default/devices)" ]
 [ ! -z "$(ls -A /root/.config/oxidized.default/devices)" ] && cp -v /root/.config/oxidized.default/devices/* /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/
-#[ -f "/root/.config/oxidized.default/dlinktemp.rb" ] && ( cp /root/.config/oxidized.default/dlinktemp.rb /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/ )
 
 sleep infinity
 

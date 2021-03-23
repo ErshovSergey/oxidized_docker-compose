@@ -1,12 +1,12 @@
 username: username
 password: passw0rd
 model: routeros
-interval: 43200
+interval: 10800
 use_syslog: false
 #log: /home/oxidized/.config/oxidized/logs/
 debug: false
 threads: 30
-timeout: 180
+timeout: 240
 retries: 3
 prompt: !ruby/regexp /^([\w.@-]+[#>]\s?)$/
 rest: 0.0.0.0:8888

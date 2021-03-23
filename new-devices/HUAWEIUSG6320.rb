@@ -19,8 +19,6 @@ class HUAWEIUSG6320 < Oxidized::Model
 
   cfg :ssh do
     post_login 'system-view'
-    post_login 'user-interface current'
-    post_login 'screen-length 0'
     post_login 'quit'
     pre_logout 'quit'
   end
