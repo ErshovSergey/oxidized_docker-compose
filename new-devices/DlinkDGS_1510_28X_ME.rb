@@ -23,7 +23,11 @@ class DlinkDGS_1510_28X_ME < Oxidized::Model
     comment cfg
   end
 
-  cmd 'show config effective'
+  cmd 'show config effective'  do |cfg|
+#     cfg.gsub! /^# User Account\ncreate account( \w* \w*)\n(\w*)\n(\w*)/, "# User Account\ncreate account\\1\ \n<< SENSORED >>\n<< SENSORED >>"
+      cfg.gsub! /^# ACCOUNT LIST\ncreate account (\w* \w*)\n(\w*)\n(\w*)/, "# ACCOUNT LIST\ncreate account\ncreate account \\1\ \n<< SENSORED >>\n<< SENSORED >>"
+    comment cfg
+  end
 
   cfg :ssh do
     post_login 'disable clipaging'

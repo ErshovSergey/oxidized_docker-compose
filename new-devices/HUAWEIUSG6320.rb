@@ -13,7 +13,9 @@ class HUAWEIUSG6320 < Oxidized::Model
    end
 
    cmd 'display current-configuration detail' do |cfg|
-     cfg.gsub! /^(Device|System) Uptime\s.+/, '' # Omit constantly changing uptime info
+     cfg.gsub! /Last configuration was saved at\s.+/, 'Last configuration was saved at << SENSORED >>' # Omit constantly changing uptime info
+     cfg.gsub! /(display current-configuration detail)\n([\d|\w|\r-|:|.]*)/, "\\1\n << SENSORED >>"
+     cfg.gsub! /^# User Account\ncreate account( \w* \w*)\n(\w*)\n(\w*)/, "# User Account\ncreate account\\1\ \n<< SENSORED >>\n<< SENSORED >>" #
      comment cfg
    end
 
