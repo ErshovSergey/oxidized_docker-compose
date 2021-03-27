@@ -1,3 +1,5 @@
+Запуск oxidized (https://github.com/ytti/oxidized) в контейнере.  
+Проверено на версии oxidized 0.28.  
 ###  Установка  
 ```
 git clone https://github.com/ErshovSergey/oxidized_docker-compose.git
