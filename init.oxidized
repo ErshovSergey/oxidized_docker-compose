@@ -16,7 +16,10 @@ set -e
 
 
 # дополнительные файлы для устройств
-[ ! -z "$(ls -A /root/.config/oxidized.default/devices)" ] && cp -v /root/.config/oxidized.default/devices/* /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/
+[ ! -z "$(ls -A /root/.config/oxidized.default/devices)" ] \
+  && [ ! -z "$(ls -A /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model)" ] \
+  && cp -v /root/.config/oxidized.default/devices/* /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/ \
+  && echo "Copy devices files."
 
 sleep infinity
 
