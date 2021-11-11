@@ -3,7 +3,7 @@ version: '2'
 services:
   oxidized:
     restart: always
-    container_name: "${PROJECT_NAME}_OXIDIZED"
+    container_name: "${PROJECT_NAME}_main"
     hostname: oxidized
     build:
       context: ./
