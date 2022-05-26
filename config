@@ -5,6 +5,7 @@ interval: 10800
 use_syslog: false
 #log: /home/oxidized/.config/oxidized/logs/
 debug: false
+#debug: true
 threads: 30
 timeout: 240
 retries: 3
@@ -29,7 +30,8 @@ models:
         password: abobrinha
 input:
   default: ssh, telnet
-  debug: false
+#  debug: false
+  debug: true
 output:
   default: git
   git:

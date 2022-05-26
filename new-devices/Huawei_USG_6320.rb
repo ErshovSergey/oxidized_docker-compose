@@ -1,7 +1,6 @@
-class HUAWEIUSG6320 < Oxidized::Model
-  # new-devices/HUAWEIUSG6320
+class Huawei_USG_6320 < Oxidized::Model
   # Test on HUAWEI USG6320.rb
-  # /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/HUAWEIUSG6320.rb
+  # /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/Huawei_USG_6320.rb
 
 #  prompt /^(\e\[27m)?(\r*[\w\s.@()\/:-]+[#>]\s?)$/
   prompt /^((\[|\<)\w*(\]|\>))/
