@@ -1,24 +1,24 @@
 #!/bin/bash
 set -e
 
-[ -f "/root/.config/oxidized/pid" ] && rm -f /root/.config/oxidized/pid
+[ -f "/home/oxidized/.config/oxidized/pid" ] && rm -f "/home/oxidized/.config/oxidized/pid"
 
 # файлы по умолчанию если не существуют
-        [ -f "/root/.config/oxidized/config" ] || \
-           ( cp /root/.config/oxidized.default/config /root/.config/oxidized/ && echo '  Copy default "config"' )
-        [ -f "/root/.config/oxidized/router.db.csv" ] || \
-           ( cp /root/.config/oxidized.default/router.db.csv   /root/.config/oxidized/ && echo '  Copy default "router.db.csv"' )
+        [ -f "/home/oxidized/.config/oxidized/config" ] || \
+           ( cp /home/oxidized/.config/oxidized.default/config /home/oxidized/.config/oxidized/ && echo '  Copy default "config"' )
+        [ -f "/home/oxidized/.config/oxidized/router.db.csv" ] || \
+           ( cp /home/oxidized/.config/oxidized.default/router.db.csv   /home/oxidized/.config/oxidized/ && echo '  Copy default "router.db.csv"' )
         [ -f "/tmp/htpasswd/${VIRTUAL_HOST}" ] || \
-           ( cp /root/.config/oxidized.default/htpasswd   /tmp/htpasswd/${VIRTUAL_HOST} && echo '  Copy default "htpasswd"' )
+           ( cp /home/oxidized/.config/oxidized.default/htpasswd   /tmp/htpasswd/${VIRTUAL_HOST} && echo '  Copy default "htpasswd"' )
 
 # закрытый ключ ssh для авторизации на промежуточных узлах
-[ -f "/root/.config/oxidized/.ssh/id_dsa" ] && ( cp /root/.config/oxidized/.ssh/id_dsa /root/.ssh/ )
+[ -f "/home/oxidized/.config/oxidized/.ssh/id_dsa" ] && ( cp /home/oxidized/.config/oxidized/.ssh/id_dsa /home/oxidized/.ssh/ )
 
 
 # дополнительные файлы для устройств
-[ ! -z "$(ls -A /root/.config/oxidized.default/devices)" ] \
-  && [ ! -z "$(ls -A /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model)" ] \
-  && cp -v /root/.config/oxidized.default/devices/* /var/lib/gems/2.5.0/gems/oxidized-0.28.0/lib/oxidized/model/ \
+[ ! -z "$(ls -A /home/oxidized/.config/oxidized.default/devices)" ] \
+  && [ ! -z "$(ls -A /var/lib/gems/3.0.0/gems/oxidized-0.29.1/lib/oxidized/model)" ] \
+  && cp -v /home/oxidized/.config/oxidized.default/devices/* /var/lib/gems/3.0.0/gems/oxidized-0.29.1/lib/oxidized/model/ \
   && echo "Copy devices files."
 
 sleep infinity

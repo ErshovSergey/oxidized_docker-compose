@@ -30,8 +30,8 @@ models:
         password: abobrinha
 input:
   default: ssh, telnet
-#  debug: false
-  debug: true
+  debug: false
+#  debug: true
 output:
   default: git
   git:

@@ -15,9 +15,10 @@ services:
       - VIRTUAL_HOST=${VIRTUAL_HOST}
 
     volumes:
-      - "${DATA_FOLDER_PATH}/oxidized-docker:/root/.config/oxidized"
+      - "${DATA_FOLDER_PATH}/oxidized-docker:/home/oxidized/.config/oxidized/"
       - ${DATA_FOLDER_PATH}/htpasswd:/tmp/htpasswd
       - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
     restart: always
 
 
@@ -31,6 +32,7 @@ services:
       - /var/run/docker.sock:/tmp/docker.sock:ro
       - ${DATA_FOLDER_PATH}/vhost.d:/etc/nginx/vhost.d
       - ${DATA_FOLDER_PATH}/htpasswd:/etc/nginx/htpasswd
+      - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
     restart: always
     depends_on:
