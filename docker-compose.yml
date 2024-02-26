@@ -19,7 +19,7 @@ services:
       - ${DATA_FOLDER_PATH}/htpasswd:/tmp/htpasswd
       - "/etc/localtime:/etc/localtime:ro"
       - "/etc/timezone:/etc/timezone:ro"
-    restart: always
+  restart: always
 
 
   nginx-proxy:
@@ -34,6 +34,6 @@ services:
       - ${DATA_FOLDER_PATH}/htpasswd:/etc/nginx/htpasswd
       - "/etc/timezone:/etc/timezone:ro"
       - "/etc/localtime:/etc/localtime:ro"
-    restart: always
+  restart: always
     depends_on:
       - oxidized
